@@ -1,7 +1,21 @@
 <div class="displayBox">
     <h3>Possible Experiments</h3>
     <ul>
-      <li *ngFor="let experiment of experiments">{{experiment}}</li>
+      
+      <li *ngFor="let experiment of experiments">
+      <button
+      (click)="addExperiment(experiment)"
+      >Add</button>
+      {{experiment}}</li>
     </ul>
 </div>
 <hr>
+
+<div class="displayBox">
+  <h3>Experiments</h3>
+  <ol>
+    <li *ngFor="let exper of experimentHold">{{exper}}</li>
+  </ol>
+
+  <button (click)="experimentHold = []">Clear Experiments</button>
+</div>

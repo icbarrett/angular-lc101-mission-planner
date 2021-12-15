@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+type Candidate = {
+  name: string;
+  photo: string;
+}
 
 @Component({
   selector: 'app-crew',
@@ -10,7 +14,7 @@ export class CrewComponent implements OnInit {
   inCrew: boolean = false;
   crew: object[] = [];
 
-  candidates: object[] = [
+  candidates: Candidate[] = [
     {name: "Sally Ride", photo: 'https://handlers.education.launchcode.org/static/images/sally-ride.jpg'},
     {name: "Mae Jemison", photo: 'https://handlers.education.launchcode.org/static/images/mae-jemison.jpg'},
     {name: "Ellen Ochoa", photo: 'https://handlers.education.launchcode.org/static/images/ellen-ochoa.jpg'},
@@ -25,5 +29,21 @@ export class CrewComponent implements OnInit {
   ngOnInit() { }
 
   // Code the 'addCrewMember' function here:
+  addCrewMember(member: Candidate) {
+   
+    if (this.crew.includes(member)) {
+      this.inCrew = true;
+    } else {
+      this.inCrew = false;
+    }
+    if (this.inCrew) {
+      let index = this.crew.indexOf(member);
+      this.crew.splice(index, 1);
+    } else if (!this.inCrew && this.crew.length < 3) {
+      this.crew.push(member);
+    }
+  }
+
+  
 
 }
